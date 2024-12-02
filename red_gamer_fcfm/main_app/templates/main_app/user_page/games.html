@@ -1,0 +1,55 @@
+{% extends 'main_app/user_page/base.html' %}
+{% load static %}
+
+{% block styles %}
+
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'main_app/game_list.css' %}">
+
+
+{% endblock %}
+
+{% block data %}
+
+<div class="tabs">
+    <a class="tab" href="/user/{{ viewing.username }}">Publicaciones</a>
+    <span class="tab current">Juegos</span>
+    <a class="tab" href="/user/{{ viewing.username }}/followers">Seguidores</a>
+</div>
+
+<div class="games-container">
+    {% for game in games %}
+    <div class="game">
+        <div class="game-info">
+            <a class="game-name" href="{{ game.url }}">{{ game.name }}</a>
+            <span class="game-genre">{{ game.genre }}</span>
+        </div>
+        <div class="right-side">
+            <div class="follow-count">
+                &#xf415; {{ game.follow_count }}
+            </div>
+            <div class="follow-button">
+                {% if user.is_authenticated %}
+                <form action="/toggle_follow/game/{{ game.url_name }}?goto='{{ this_url }}'">
+                    {% if game in followed_games %}
+                    <button class="follow-button followed" type="submit" title="Dejar de seguir"
+                        onclick="this.disabled = true; this.form.submit()">-</button>
+                    {% else %}
+                    <button class="follow-button unfollowed" type="submit" title="Seguir"
+                        onclick="this.disabled = true; this.form.submit()">+</button>
+                    {% endif %}
+                </form>
+                {% else %}
+                <button title="Inicia sesión para seguir juegos!" class="follow-button logged-out" disabled>+</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% empty %}
+    <div class="no-games">{{ viewing.username }} no sigue ningún juego &#x2639;</div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

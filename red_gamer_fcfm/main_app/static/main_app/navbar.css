@@ -1,0 +1,74 @@
+@font-face {
+    font-family: "Cozette";
+    src:
+        url("/static/main_app/CozetteVector.ttf") format("truetype");
+}
+
+body {
+    font-family: "Cozette", mono, system-ui;
+    font-style: normal;
+    background-color: #b8c3cf;
+    color: #1c1c1c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-size: 26px;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* Clase asociada a la barra de menu superior */
+    background-color: #1c1c1c;
+    position: sticky;
+    top: 0;
+    width: 100%;
+
+    color: #b8c3cf;
+    height: 32px;
+    z-index: 1;
+}
+
+.navbar a {
+    color: #b8c3cf;
+}
+
+.navbar a:hover {
+    color: #8693a1;
+}
+
+.navbar-left {
+    margin-left: 1em;
+}
+
+.navbar-right {
+    margin-right: 1em;
+}
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.navbar-avatar {
+    height: 30px;
+    width: 30px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.navbar-user-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    text-decoration: none;
+}
+
+main a {
+    color: #0079d3;
+}

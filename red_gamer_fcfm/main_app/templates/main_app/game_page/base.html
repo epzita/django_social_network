@@ -1,0 +1,50 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block title %} Página de {{ game_requested.name }} {% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'main_app/game_page.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="game-info">
+    <img class="game-logo" src="{{ game_requested.logo_url }}" height="300" />
+    <div class=" main-game-text">
+        <span class="game-name">{{ game_requested.name }}</span>
+        <span class="game-genre">Género: {{ game_requested.genre }}</span>
+    </div>
+</div>
+</div>
+
+{%block follow%}
+
+<div class="follows-side">
+    <div class="follow-count">
+        &#xf415; {{ followers }}
+    </div>
+    <div class="follow-button">
+        {% if user.is_authenticated %}
+        <form action="/toggle_follow/game/{{ game_requested.url_name }}?goto='{{ this_url }}'">
+            {% if game_requested in followed_games %}
+            <button class="follow-button followed" type="submit" title="Dejar de seguir"
+                onclick="this.disabled = true; this.form.submit()">-</button>
+            {% else %}
+            <button class="follow-button unfollowed" type="submit" title="Seguir"
+                onclick="this.disabled = true; this.form.submit()">+</button>
+            {% endif %}
+        </form>
+        {% else %}
+        <button title="Inicia sesión para seguir juegos!" class="follow-button logged-out" disabled>+</button>
+        {% endif %}
+    </div>
+</div>
+
+{%endblock follow%}
+
+
+{% block data %}{% endblock %}
+
+
+{% endblock %}

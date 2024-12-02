@@ -1,0 +1,162 @@
+.user-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 20px 20px 20px;
+}
+
+.left-side-user {
+    display: flex;
+    flex-direction: row;
+}
+
+.main-avatar {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 1em;
+    border-radius: 8px;
+}
+
+.main-user-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-username {
+    font-size: 39px;
+    margin-bottom: 10px;
+}
+
+.main-description p {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    line-height: 26px;
+}
+
+main {
+    width: 60vw;
+    margin-bottom: 20px;
+}
+
+
+.posts-container,
+.games-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.no-posts,
+.no-games {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.tab {
+    flex-grow: 1;
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #d2deec;
+}
+
+.tab:hover {
+    background-color: #e3f0ff;
+}
+
+.tab.current {
+    border-bottom: none;
+    background-color: #f9f9f9;
+}
+
+.right-side-user {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+button.edit-user {
+    font-family: "Cozette", mono, system-ui;
+    padding: 10px;
+    background-color: #1a1b1c;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 26px;
+    width: 48px;
+    height: 48px;
+}
+
+button.edit-user:hover {
+    background-color: #b60e0e;
+}
+
+button.follow-button-user {
+    font-family: "Cozette", mono, system-ui;
+    font-style: normal;
+    font-size: 26px;
+    /* Ajusta el tamaño de la fuente según sea necesario */
+    padding: 10px 20px;
+    /* Añade padding horizontal para dar espacio al texto */
+    background-color: #1a1b1c;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.follow-button-user:hover {
+    background-color: #b60e0e;
+}
+
+button.follow-button-user:active {
+    background-color: #7a1212;
+}
+
+button.follow-button-user:disabled,
+button.follow-button-user.unfollowed:disabled,
+button.follow-button-user.unfollowed:disabled:hover,
+button.follow-button-user.followed:disabled,
+button.follow-button-user.followed:disabled:hover {
+    background-color: gray;
+}
+
+button.follow-button-user.logged-out {
+    cursor: help;
+}
+
+button.follow-button-user.unfollowed {
+    background-color: #03447a;
+}
+
+button.follow-button-user.unfollowed:hover {
+    background-color: #259bbc;
+}
+
+button.follow-button-user.unfollowed:active {
+    background-color: #002b4f;
+}
+
+button.follow-button-user.followed {
+    background-color: #b60e0e;
+}
+
+button.follow-button-user.followed:hover {
+    background-color: #dc3a3a;
+}
+
+button.follow-button-user.followed:active {
+    background-color: #7a1212;
+}

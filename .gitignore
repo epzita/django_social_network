@@ -1,0 +1,6 @@
+.venv/
+.project_venv/
+a/
+__pycache__
+red_gamer_fcfm/main_app/migrations/
+venv/

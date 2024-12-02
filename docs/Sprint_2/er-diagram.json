@@ -1,0 +1,281 @@
+{
+  "erDoc": "entity UserFCFM {\n    username key\n    email\n    password\n    avatar\n    short_description\n    long_description\n}\n\nentity VideoGame {\n    name key\n    main_genre\n    logo\n    short_description\n    long_description\n}\n\nentity Post {\n    title key\n    date\n    content\n\n}\n\nrelation Follows_Game(UserFCFM, VideoGame)\n\nrelation Author(UserFCFM, Post 1!)\n\nrelation GameRelated(VideoGame, Post 1!)\n\nrelation Reaction(UserFCFM, Post)\n\nrelation Follows_User(UserFCFM: [Source, Target])",
+  "nodes": [
+    {
+      "id": "0",
+      "position": {
+        "x": 207.47080890673467,
+        "y": 30.41427487483395
+      }
+    },
+    {
+      "id": "1",
+      "position": {
+        "x": 4.566264396322481,
+        "y": -49.43767942290589
+      }
+    },
+    {
+      "id": "2",
+      "position": {
+        "x": 21.22420941174252,
+        "y": -80.26299664331185
+      }
+    },
+    {
+      "id": "3",
+      "position": {
+        "x": 5.858508774824969,
+        "y": -112.23699055337318
+      }
+    },
+    {
+      "id": "4",
+      "position": {
+        "x": -17.844189036214544,
+        "y": 61.518300265815924
+      }
+    },
+    {
+      "id": "5",
+      "position": {
+        "x": -159.96338873560035,
+        "y": 21.131835734658807
+      }
+    },
+    {
+      "id": "6",
+      "position": {
+        "x": -160.22775326290432,
+        "y": -31.92492931657057
+      }
+    },
+    {
+      "id": "7",
+      "position": {
+        "x": 723.975929852457,
+        "y": 31.188227763825807
+      }
+    },
+    {
+      "id": "8",
+      "position": {
+        "x": 69.83176952076724,
+        "y": -64.90616164571327
+      }
+    },
+    {
+      "id": "9",
+      "position": {
+        "x": -0.09472399633068562,
+        "y": -112.11539042882407
+      }
+    },
+    {
+      "id": "10",
+      "position": {
+        "x": -21.378022107311608,
+        "y": -64.90616164571327
+      }
+    },
+    {
+      "id": "13",
+      "position": {
+        "x": 528.6847649859651,
+        "y": 320.51112901027136
+      }
+    },
+    {
+      "id": "14",
+      "position": {
+        "x": -51.35843390091935,
+        "y": 69.02632094306614
+      }
+    },
+    {
+      "id": "15",
+      "position": {
+        "x": 8.603799738037196,
+        "y": 70.17349424147096
+      }
+    },
+    {
+      "id": "16",
+      "position": {
+        "x": 68.5660333769938,
+        "y": 69.31311426766729
+      }
+    },
+    {
+      "id": "17",
+      "position": {
+        "x": 526.5254688944015,
+        "y": 5.463764759231481
+      }
+    },
+    {
+      "id": "18",
+      "position": {
+        "x": 314.06125340062295,
+        "y": 196.7441339048936
+      }
+    },
+    {
+      "id": "19",
+      "position": {
+        "x": 729.1529504271069,
+        "y": 294.17742337846687
+      }
+    },
+    {
+      "id": "20",
+      "position": {
+        "x": 208.58731023060687,
+        "y": 295.3847878530446
+      }
+    },
+    {
+      "id": "21",
+      "position": {
+        "x": 209.73209337905695,
+        "y": -211.34009546781044
+      }
+    },
+    {
+      "id": "11",
+      "position": {
+        "x": 131.99843579947265,
+        "y": 26.38560935514947
+      }
+    },
+    {
+      "id": "12",
+      "position": {
+        "x": 134.7852965150439,
+        "y": -29.625340048541183
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "entity-attr: UserFCFM->username",
+      "source": "0",
+      "target": "1"
+    },
+    {
+      "id": "entity-attr: UserFCFM->email",
+      "source": "0",
+      "target": "2"
+    },
+    {
+      "id": "entity-attr: UserFCFM->password",
+      "source": "0",
+      "target": "3"
+    },
+    {
+      "id": "entity-attr: UserFCFM->avatar",
+      "source": "0",
+      "target": "4"
+    },
+    {
+      "id": "entity-attr: UserFCFM->short_description",
+      "source": "0",
+      "target": "5"
+    },
+    {
+      "id": "entity-attr: UserFCFM->long_description",
+      "source": "0",
+      "target": "6"
+    },
+    {
+      "id": "entity-attr: VideoGame->name",
+      "source": "7",
+      "target": "8"
+    },
+    {
+      "id": "entity-attr: VideoGame->logo",
+      "source": "7",
+      "target": "10"
+    },
+    {
+      "id": "entity-attr: Post->title",
+      "source": "13",
+      "target": "14"
+    },
+    {
+      "id": "entity-attr: Post->date",
+      "source": "13",
+      "target": "15"
+    },
+    {
+      "id": "entity-attr: Post->content",
+      "source": "13",
+      "target": "16"
+    },
+    {
+      "id": "relationship-part: Author$Post$UserFCFM->UserFCFM",
+      "source": "18",
+      "target": "0"
+    },
+    {
+      "id": "relationship-part: Author$Post$UserFCFM->Post",
+      "source": "18",
+      "target": "13"
+    },
+    {
+      "id": "relationship-part: GameRelated$Post$VideoGame->VideoGame",
+      "source": "19",
+      "target": "7"
+    },
+    {
+      "id": "relationship-part: GameRelated$Post$VideoGame->Post",
+      "source": "19",
+      "target": "13"
+    },
+    {
+      "id": "relationship-part: Reaction$Post$UserFCFM->UserFCFM",
+      "source": "20",
+      "target": "0"
+    },
+    {
+      "id": "relationship-part: Reaction$Post$UserFCFM->Post",
+      "source": "20",
+      "target": "13"
+    },
+    {
+      "id": "entity-attr: VideoGame->short_description",
+      "source": "7",
+      "target": "11"
+    },
+    {
+      "id": "entity-attr: VideoGame->long_description",
+      "source": "7",
+      "target": "12"
+    },
+    {
+      "id": "entity-attr: VideoGame->main_genre",
+      "source": "7",
+      "target": "9"
+    },
+    {
+      "id": "relationship-part: Follows_Game$UserFCFM$VideoGame->UserFCFM",
+      "source": "17",
+      "target": "0"
+    },
+    {
+      "id": "relationship-part: Follows_Game$UserFCFM$VideoGame->VideoGame",
+      "source": "17",
+      "target": "7"
+    },
+    {
+      "id": "1relationship-part: Follows_User$UserFCFM->UserFCFM->Source",
+      "source": "21",
+      "target": "0"
+    },
+    {
+      "id": "4relationship-part: Follows_User$UserFCFM->UserFCFM->Target",
+      "source": "21",
+      "target": "0"
+    }
+  ]
+}

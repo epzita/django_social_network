@@ -1,0 +1,24 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block title %} Regístrate {% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'main_app/register.css' %}">
+{% endblock %}
+
+{%block content %}
+<div class="bg-containter">
+    <img src="{% static 'assets/star.png' %}" alt="Background Image" class="background-image">
+</div>
+<div class="register-form">
+    <h1>Crea tu cuenta</h1>
+    <form method="post" action="{% url 'register' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">&#x2728; Registrarse</button>
+        <input type="hidden" name="goto" value="{{ from_url }}">
+    </form>
+
+</div>
+{% endblock %}

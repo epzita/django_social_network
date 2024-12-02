@@ -1,0 +1,64 @@
+{% extends 'main_app/user_page/base.html' %}
+{% load static %}
+
+{% block styles %}
+
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'main_app/user_list.css' %}">
+
+
+{% endblock %}
+
+{% block data %}
+
+<div class="tabs">
+    <a class="tab" href="/user/{{ viewing.username }}">Publicaciones</a>
+    <a class="tab" href="/user/{{ viewing.username }}/games">Juegos</a>
+    <span class="tab current">Seguidores</span>
+
+</div>
+
+<div class="filter-list" id="filter-list">
+    {% for follower in followers %}
+    <div class="user">
+        <div class="list-user-info">
+            <img class="user-avatar" src="{{ follower.avatar_url }}" width="75" height="75" />
+            <div class="user-text">
+                <a id="filter-string" class="username" href="{{ follower.user_url }}">{{ follower.username }}</a>
+                <span class="user-description">{{ follower.short_description }}</span>
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="follow-count">
+                &#xf415; {{ follower.follower_count }}
+            </div>
+
+            <div class="follow-button">
+                {% if user.is_authenticated %}
+                <form action="/toggle_follow/user/{{ follower.url_name }}?goto='{{ this_url }}'">
+                    {% if follower != user %}
+                    {% if follower in followed_users %}
+                    <button class="follow-button followed" type="submit" title="Dejar de seguir"
+                        onclick="this.disabled = true; this.form.submit()">-</button>
+                    {% else %}
+                    <button class="follow-button unfollowed" type="submit" title="Seguir"
+                        onclick="this.disabled = true; this.form.submit()">+</button>
+                    {% endif %}
+                    {% endif %}
+                </form>
+                {% else %}
+                <button title="Inicia sesión para seguir usuarios!" class="follow-button logged-out" disabled>+</button>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+
+    {% empty %}
+    <div class="no-games"> Actualmente nadie sigue a {{ viewing.username }} &#x2639;</div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'main_app/indexes/indexes_base.html' %}
+{% load static %}
+
+{% block title %} Índice de Usuarios {% endblock %}
+
+{% block styles %}
+
+<link rel="stylesheet" href="{% static 'main_app/indexes_base.css' %}">
+<link rel="stylesheet" href="{% static 'main_app/user_list.css' %}">
+
+{% endblock %}
+
+{% block name %} Índice de Usuarios {% endblock %}
+
+{% block listblock %}
+
+<div id="filter-list">
+    {% for u in users %}
+    <div class="user">
+        <div class="list-user-info">
+            <img class="user-avatar" src="{{ u.avatar_url }}" width="75" height="75" />
+            <div class="user-text">
+                <a id="filter-string" class="username" href="{{ u.user_url }}">{{ u.username }}</a>
+                <span class="user-description">{{ u.short_description }}</span>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <div class="follow-count">
+                &#xf415; {{ u.follower_count }}
+
+            </div>
+            <div class="follow-button">
+
+                {% if user.is_authenticated %}
+                <form action="/toggle_follow/user/{{ u.url_name }}?goto='{{ this_url }}'">
+                    {% if u in followed_users %}
+                    <button class="follow-button followed" type="submit" title="Dejar de seguir"
+                        onclick="this.disabled = true; this.form.submit()">-</button>
+                    {% else %}
+                    <button class="follow-button unfollowed" type="submit" title="Seguir"
+                        onclick="this.disabled = true; this.form.submit()">+</button>
+                    {% endif %}
+                </form>
+                {% else %}
+                <button title="Inicia sesión para seguir usuarios!" class="follow-button logged-out" disabled>+</button>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+    {% empty %}
+    <p>No hay usuarios disponibles.</p>
+    {% endfor %}
+
+    <div id="no-items" style="display: none;">Nada coincide con el filtro</div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        const url = new URL(window.location)
+        let scroll = url.searchParams.get("s");
+        if (scroll) {
+            var scrollpos = sessionStorage.getItem('scrollpos_ui');
+            if (scrollpos) window.scrollTo(0, scrollpos);
+        }
+    });
+
+    window.onbeforeunload = function (e) {
+        sessionStorage.setItem('scrollpos_ui', window.scrollY);
+    };
+</script>
+{% endblock %}

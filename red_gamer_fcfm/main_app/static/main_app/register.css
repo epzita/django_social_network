@@ -1,0 +1,75 @@
+h1 {
+    font-size: 39px;
+    font-weight: normal;
+    margin-top: 0px;
+}
+
+.background-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: auto;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    /* Centra y rota la imagen */
+    /* Asegura que la imagen esté detrás del contenido */
+    opacity: 0.5;
+    /* Ajusta la opacidad según sea necesario */
+}
+
+.bg-containter {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.register-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin-top: 60px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    font-family: "Cozette", mono, system-ui;
+    font-size: 26px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    font-family: "Cozette", mono, system-ui;
+    font-style: normal;
+    font-weight: 100;
+    width: 100%;
+    padding: 10px;
+    background-color: #1a1b1c;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 26px;
+}
+
+button:hover {
+    background-color: #b60e0e;
+}

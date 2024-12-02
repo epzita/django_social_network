@@ -1,0 +1,117 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{%block content %}
+<div class="head">
+    <h1>{% block name %} {% endblock %}</h1>
+    <div class="filter-form">
+        <div class="filter-search"> 
+            <input type="text" name="filter-search" id="filter-search" placeholder="Buscar..." value="{{ query }}">
+            <button id="clear-button"> &#xf0b0;&#10005;</button>
+        </div>
+        
+        <form method="POST" id="post-genre">
+            {% csrf_token %}
+            <div class="form-genre">
+                <select name="select-genre" id="select-genre" class="select-genre" onChange="form.submit();">
+                    <option value="Todos">Todos</option>
+                    {% for genre in genres %}
+                    <option value="{{ genre.genre }}" 
+                        {% if genre.genre == selected_genre %} selected {% endif %}>{{ genre.genre }}
+                    </option>
+                    {% endfor %}
+                </select>
+
+                <button id="clear-button-2" class="clear-button-2" type="button" onclick="reiniciarSelect()" {% if selected_genre == "Todos" %} title="No hay filtro de género" disabled {% else %} title="Borrar filtro de género" {% endif %}> &#xf0b0;&#10005;</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Este bloque carga las listas de elementos que se deseen -->
+{% block listblock %} {% endblock %}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // el filtro es client-side, para que sea mientras se escribe
+    // lo puse aqui en vez de hacer un archivo de js porque era mas facil no mas
+    let input = document.getElementById("filter-search");
+    let button = document.getElementById("clear-button");
+    let list = document.getElementById("filter-list");
+    let no_items = document.getElementById("no-items");
+    let select_genre = document.getElementById("select-genre");
+    let post_genre = document.getElementById("post-genre");
+
+    // Función para reiniciar el valor del select al valor por defecto
+    function reiniciarSelect() {
+        console.log("Presionado");
+        select_genre.value = 'Todos';
+        post_genre.submit();
+    }
+
+    /*
+    let test_children = list.children
+    let test_game = test_children[0]
+
+    console.log(test_game.children[0].children[0].textContent);
+    */
+
+    input.addEventListener("input", (event) => {
+        filter(event.target.value)
+        set_button_state()
+    })
+    button.addEventListener("click", () => {
+        input.value = ""
+        filter("")
+        set_button_state()
+    })
+
+    // actualiza el parametro q de la url a string
+    function update_param(string) {
+        const url = new URL(window.location)
+        url.searchParams.set("q", encodeURI(string));
+        history.pushState(null, '', url);
+    }
+
+    // dice si el patron pattern coincide en string
+    function matches(string, pattern) {
+        // por ahora, solo dice si el pattern esta en string, con ambos en minuscula
+        return string.toLowerCase().includes(pattern.toLowerCase())
+    }
+
+    // esconde los juegos cuyo nombre no hace match, y muestra los que si
+    // no los cambia de orden ni nada
+    // TODO quizas?: que destaque el pedacito del nombre que coincide
+    function filter(string) {
+        update_param(string)
+        let shown = 0
+        let children = list.children
+        for (let i = 0; i < children.length; i++) {
+            let list_item = children[i]
+            let match_against = list_item.querySelector("#filter-string")
+            if (match_against && matches(match_against.textContent, string)) {
+                list_item.style.display = "";
+                shown += 1
+            } else {
+                list_item.style.display = "none";
+            }
+        }
+        console.log(shown)
+        if (shown == 0) {
+            no_items.style.display = "";
+        }
+        console.log(string)
+    }
+
+    // activa el boton si la barra dice algo, si no, lo desactiva
+    function set_button_state() {
+        button.disabled = !input.value
+        button.title = input.value ? "Borrar filtro de nombre" : "No hay filtro de nombre"
+    }
+
+    filter(input.value)
+    set_button_state()
+</script>
+{% endblock %}

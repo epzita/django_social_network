@@ -1,0 +1,74 @@
+{% extends 'main_app/game_page/base.html' %}
+{% load static %}
+
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'main_app/posts.css' %}">
+{% endblock %}
+
+{% block data %}
+<div class="tabs">
+    <span class="tab current">Publicaciones</span>
+</div>
+
+<div class="posts-container">
+    {% for post in posts %}
+
+    <div class="Post">
+        <div class="post-header">
+            <h1 class="post--title">{{ post.title }}</h1>
+            <p class="post--date">{{post.date|time:"H:i"}} {{ post.date|date:"j-n-Y" }}</p>
+        </div>
+
+        <a href="/user/{{ post.user.username }}" class="post-user">
+            <img src="{{ post.user.avatar_url }}" class="post--avatar" />
+            <span class="post--username">{{ post.user.username }}</span></a>
+
+        <div class="post-bottom">
+            <div class="post--content">{{ post.content|linebreaks }}</div>
+            <div class="like-container">
+                <div class="liked-count">
+                    Likes: {{ post.liked_by.count}}
+                </div>
+                <div class="like-button">
+                    {% if user.is_authenticated %}
+                    <form action="/toggle_like/{{ post.id }}">
+                        {% if post in posts_liked %}
+                        <button class="like-button unlike" type="submit" title="Ya no me gusta"
+                            onclick="this.disabled = true; this.form.submit()">↓</button>
+                        {% else %}
+                        <button class="like-button like" type="submit" title="Me gusta"
+                            onclick="this.disabled = true; this.form.submit()">↑</button>
+                        {% endif %}
+                    </form>
+                    {% else %}
+                    <!--<button title="Inicia sesión para dar like!" class="like-button logged-out" disabled>↑</button>-->
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% empty %}
+    <div class="no-posts"> No hay publicaciones sobre {{ game_requested.name }} &#x2639;</div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        const url = new URL(window.location)
+        let scroll = url.searchParams.get("s");
+        if (scroll) {
+            var scrollpos = sessionStorage.getItem('scrollpos_g');
+            if (scrollpos) window.scrollTo(0, scrollpos);
+        }
+    });
+
+    window.onbeforeunload = function (e) {
+        sessionStorage.setItem('scrollpos_g', window.scrollY);
+    };
+</script>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'main_app/indexes/indexes_base.html' %}
+{% load static %}
+
+{% block title %} Índice de Juegos {% endblock %}
+
+{% block styles %}
+
+<link rel="stylesheet" href="{% static 'main_app/indexes_base.css' %}">
+<link rel="stylesheet" href="{% static 'main_app/game_list.css' %}">
+
+{% endblock %}
+
+{% block name %} Índice de Juegos {% endblock %}
+
+{% block listblock %}
+
+<div id="filter-list">
+    {% for game in games %}
+    <div class="game">
+        <div class="game-info">
+            <a id="filter-string" class="game-name" href="{{ game.url }}">{{ game.name }}</a>
+            <span class="game-genre">{{ game.genre }}</span>
+        </div>
+        <div class="right-side">
+            <div class="follow-count">
+                &#xf415; {{ game.followers }}
+            </div>
+            <div class="follow-button">
+                {% if user.is_authenticated %}
+                <form action="/toggle_follow/game/{{ game.url_name }}?goto='{{ this_url }}'">
+                    {% if game in followed_games %}
+                    <button class="follow-button followed" type="submit" title="Dejar de seguir"
+                        onclick="this.disabled = true; this.form.submit()">-</button>
+                    {% else %}
+                    <button class="follow-button unfollowed" type="submit" title="Seguir"
+                        onclick="this.disabled = true; this.form.submit()">+</button>
+                    {% endif %}
+                </form>
+                {% else %}
+                <button title="Inicia sesión para seguir juegos!" class="follow-button logged-out" disabled>+</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% empty %}
+    <p>No hay juegos disponibles.</p>
+    {% endfor %}
+
+    <div id="no-items" style="display: none;">Nada coincide con el filtro... &#x2639;</div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+{{ block.super }}
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        const url = new URL(window.location)
+        let scroll = url.searchParams.get("s");
+        if (scroll) {
+            var scrollpos = sessionStorage.getItem('scrollpos_gi');
+            if (scrollpos) window.scrollTo(0, scrollpos);
+        }
+    });
+
+    window.onbeforeunload = function (e) {
+        sessionStorage.setItem('scrollpos_gi', window.scrollY);
+    };
+</script>
+{% endblock %}

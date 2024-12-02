@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'main_app/navbar.css' %}">
+    {% block styles %}{% endblock %}
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="/" class="navbar-logo"> Red Gamer FCFM </a>
+        </div>
+        <div class="navbar-right">
+            {% if user.is_authenticated %}
+            <div class="navbar-user">
+                <a href="/user/{{ user.username }}" class="navbar-user-link">
+                    <img class="navbar-avatar" src="{{ user.avatar_url }}" width="30" height="30" />
+                    {{ user.username }}
+                </a>
+                <a href="{% url 'logout' %}" class="btn btn-outline-success">Cerrar sesión</a>
+            </div>
+
+
+            {% else %}
+            <div class="login-buttons">
+                {% if login %}
+                ¿Aun no tienes cuenta?
+                <a href="{% url 'register' %}" class="btn btn-outline-success">Registrate</a>
+                {% elif register %}
+                ¿Ya tienes cuenta?
+                <a href="{% url 'login' %}" class="btn btn-outline-success">Inicia Sesión</a>
+                {% else %}
+                <a href="{% url 'register' %}" class="btn btn-outline-success">Registrarse</a>
+                <a href="{% url 'login' %}" class="btn btn-outline-success">Iniciar Sesión</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <main>{% block content %}{% endblock %}</main>
+</body>
+
+</html>
+
+<!-- Este bloque permite cargar los scripts de javascript que se necesiten-->
+{% block scripts %}{% endblock %}

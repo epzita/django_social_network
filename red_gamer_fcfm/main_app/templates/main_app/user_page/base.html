@@ -1,0 +1,55 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block title %} Página de {{ viewing.username }} {% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'main_app/user_page.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="user-info">
+    <div class="left-side-user">
+        <img class="main-avatar" src="{{ viewing.avatar_url }}" width="100" height="100" />
+        <div class="main-user-text">
+            <span class="main-username">{{ viewing.username }}</span>
+            <span class="main-description">{{ viewing.long_description|linebreaks }}</span>
+        </div>
+    </div>
+    <div class="right-side-user">
+        <div class="follow-count">
+            &#xf415; {{ viewing.followers.count }}
+        </div>
+        <div class="follow-button-user">
+            {% if viewing == user %}
+            <form action="{% url 'settings' %}">
+                <button class="edit-user" type="submit" title="Editar tu usuario">&#xf040;</button>
+            </form>
+            {% else %}
+            {% if user.is_authenticated %}
+            <form action="{% url 'follow_user' viewing.username %}?goto={{ request.path }}" method="post">
+                {% csrf_token %}
+
+                {% if viewing in followed_users %}
+                <button class="follow-button-user followed" type="submit" title="Dejar de seguir"
+                    onclick="this.disabled = true; this.form.submit()">Dejar de seguir</button>
+                {% else %}
+                <button class="follow-button-user unfollowed" type="submit" title="Seguir"
+                    onclick="this.disabled = true; this.form.submit()">Seguir</button>
+                {% endif %}
+            </form>
+            {% else %}
+            <button title="Inicia sesión para seguir usuarios!" class="follow-button-user logged-out"
+                disabled>+</button>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+{% block data %}{% endblock %}
+
+
+{% endblock %}

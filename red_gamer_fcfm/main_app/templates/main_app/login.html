@@ -1,0 +1,33 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block title %} Inicia Sesión {% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'main_app/register.css' %}">
+{% endblock %}
+
+{%block content %}
+<div class="bg-containter">
+    <img src="{% static 'assets/star.png' %}" alt="Background Image" class="background-image">
+</div>
+<div class="register-form">
+    <h1>Inicia Sesión</h1>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <label for="username">Nombre de Usuario:</label>
+        <input type="text" id="username" name="username" required autofocus><br><br>
+        <label for="password1">Contraseña:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="hidden" name="goto" value="{{ from_url }}">
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}

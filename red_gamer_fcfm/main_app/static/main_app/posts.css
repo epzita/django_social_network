@@ -1,0 +1,135 @@
+.Post {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post--title {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 39px;
+    font-weight: normal;
+}
+
+.post--date {
+    color: #888;
+    min-width: max-content;
+    margin: 0;
+}
+
+.post-user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0.5em;
+    width: min-content;
+}
+
+.post--content p {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    line-height: 26px;
+}
+
+.post--username {
+    margin-left: 10px;
+}
+
+.post--username:hover {
+    text-decoration: underline;
+}
+
+.post--content {
+    color: #333;
+    margin: 0.5em 0 0 0;
+}
+
+.post--avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.post-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.like-container {
+    align-self: end;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    white-space: nowrap;
+}
+
+button.like-button {
+    font-family: "Cozette", mono, system-ui;
+    font-style: normal;
+    font-size: 26px;
+    font-weight: 100;
+    padding: 10px;
+    background-color: #1a1b1c;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+}
+
+button.like-button:hover {
+    background-color: #b60e0e;
+}
+
+button.like-button:active {
+    background-color: #7a1212;
+}
+
+button.like-button:disabled,
+button.like-button.unlike:disabled,
+button.like-button.unlike:disabled:hover,
+button.like-button.like:disabled,
+button.like-button.like:disabled:hover {
+    background-color: gray;
+}
+
+button.like-button.logged-out {
+    cursor: help;
+}
+
+button.like-button.like {
+    background-color: #03447a;
+}
+
+button.like-button.like:hover {
+    background-color: #259bbc;
+}
+
+button.like-button.like:active {
+    background-color: #002b4f;
+}
+
+button.like-button.unlike {
+    background-color: #b60e0e;
+}
+
+button.like-button.unlike:hover {
+    background-color: #dc3a3a;
+}
+
+button.like-button.unlike:active {
+    background-color: #7a1212;
+}

@@ -1,0 +1,19 @@
+{% extends 'main_app/user_page/base.html' %}
+{% load static %}
+
+{% block title %}Configuración de Perfil{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'main_app/user_settings.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="settings-container">
+    <h1>Configuración de Perfil</h1>
+    <form method="post" action="{% url 'settings' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+</div>
+{% endblock %}

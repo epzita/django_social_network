@@ -1,0 +1,33 @@
+{% extends 'main_app/base.html' %}
+{% load static%}
+
+{% block title %} Página Principal {% endblock %}
+
+{%block content %}
+
+<div class="index--a">
+    <a href="/register"> Link hacia página de registro</a>
+</div>
+
+<div class="index--a">
+    <a href="/login"> Link hacia página de login </a>
+</div>
+
+<div class="index--a">
+    <a href="/testpost"> Link hacia página tests de posts </a>
+</div>
+
+<div class="index--a">
+    <a href="/create_post">Crear post (WIP)</a>
+</div>
+
+<div class="index--a">
+    <a href="/user/pepeperez"> Pagina de usuario </a>
+</div>
+
+<div class="index--a">
+    <a href="/game_index"> Índice de Juegos </a>
+</div>
+
+
+{% endblock %}

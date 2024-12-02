@@ -1,0 +1,6 @@
+asarPy==1.0.1
+asgiref==3.3.2
+Django==3.2.25
+pillow==10.4.0
+pytz==2020.1
+sqlparse==0.4.4

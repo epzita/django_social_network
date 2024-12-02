@@ -1,0 +1,62 @@
+main {
+    width: 40vw;
+}
+
+h1 {
+    font-size: 39px;
+    font-weight: normal;
+    margin-top: 0px;
+}
+
+.settings-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin: 20px 0;
+}
+
+label:not([for="avatar-clear_id"]) {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="text"] {
+    font-family: "Cozette", mono, system-ui;
+    font-size: 26px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    font-family: "Cozette", mono, system-ui;
+    resize: vertical;
+    width: 100%;
+    min-height: 3em;
+    font-size: 26px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    font-family: "Cozette", mono, system-ui;
+    font-style: normal;
+    font-weight: 100;
+    width: 100%;
+    padding: 10px;
+    background-color: #1a1b1c;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 26px;
+}
+
+button:hover {
+    background-color: #b60e0e;
+}
