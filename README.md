@@ -18,7 +18,7 @@ Una red social simple que permite a los usuarios publicar sobre sus juegos favor
 ### Para correr
 
 ```bash
-git clone https://github.com/DCC-CC4401/2024-2-CC4401-grupo-4
+git clone https://github.com/epzita/django_social_network
 python -m venv /.venv
 source ./venv/bin/activate
 cd 2024-2-CC4401-grupo-4/red-gamer-fcfm
