@@ -1,4 +1,4 @@
-> 2024-2-CC4401-grupo-4
+
 # Red Gamer
 
 Una red social simple que permite a los usuarios publicar sobre sus juegos favoritos.
@@ -21,7 +21,7 @@ Una red social simple que permite a los usuarios publicar sobre sus juegos favor
 git clone https://github.com/epzita/django_social_network
 python -m venv /.venv
 source ./venv/bin/activate
-cd 2024-2-CC4401-grupo-4/red-gamer-fcfm
+cd red-gamer-fcfm
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
